@@ -20,7 +20,7 @@ class SubscriptionPlan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
+      // appBar: CustomAppBar(),
       body: Column(
         children: [
           Expanded(

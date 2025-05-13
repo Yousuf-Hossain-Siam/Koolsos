@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
             GetPage(name: '/', page: () => SplashScreen()),
             GetPage(name: '/login', page: () => LoginScreen()),
             GetPage(name: '/home', page: () => CustomBottomNavBar()), 
-            
+   
           ],
         );
       },

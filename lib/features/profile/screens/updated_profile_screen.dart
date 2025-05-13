@@ -1,26 +1,26 @@
 import 'package:dummy_project_1/core/common/style/global_text_style.dart';
 import 'package:dummy_project_1/core/utils/constants/app_text.dart';
 import 'package:dummy_project_1/core/utils/constants/colors.dart';
-
+import 'package:dummy_project_1/core/utils/constants/icon_path.dart';
 import 'package:dummy_project_1/core/widgets/controller/toggle_button_controller.dart';
 import 'package:dummy_project_1/core/widgets/screens/custom_bottom_border.dart';
 import 'package:dummy_project_1/core/widgets/screens/custom_toggle_button_screen.dart';
-import 'package:dummy_project_1/features/card%20payment/screens/card_activation_screen.dart';
 import 'package:dummy_project_1/features/history/screens/history_screen.dart';
 import 'package:dummy_project_1/features/password/screens/password_screen.dart';
 import 'package:dummy_project_1/features/privacy/screens/privacy_and_policy.dart';
 import 'package:dummy_project_1/features/profile/screens/edit_profile_screen.dart';
+import 'package:dummy_project_1/features/profile/widgets/location_card.dart';
 import 'package:dummy_project_1/features/profile/widgets/menu_item_card.dart';
 import 'package:dummy_project_1/features/terms%20&%20condition/screens/terms_and_conditon_screen.dart';
 import 'package:dummy_project_1/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:get/get_core/src/get_main.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
-class ProfileScreen extends StatelessWidget {
+class UpdatedProfileScreen extends StatelessWidget {
     final ToggleButtonController controller = Get.put(ToggleButtonController());
-ProfileScreen({super.key});
+UpdatedProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -143,15 +143,30 @@ ProfileScreen({super.key});
               ],
             ).marginOnly(top: 16, ),
 
-            Text(
-                    "If the service area is not selected, you will not be able to find any consumers.",
-                    style: getTextStyle(
-                      fontFamily: 'bricolage',
-                      fontSize: 10,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.textPrimary,
-                    ),
-                  ).paddingOnly( top: 5),
+         Wrap(
+              alignment: WrapAlignment.start,
+              crossAxisAlignment: WrapCrossAlignment.start,
+              runSpacing: 8,
+              spacing: 8,
+              children: [
+                LocationCard(
+                  title: '350 5th Ave',
+                  backgroundColor: AppColors.accent,
+                ),
+                LocationCard(
+                  title: '1 World Trade Center',
+                  backgroundColor: AppColors.success.withValues(alpha: 0.5),
+                ),
+                LocationCard(
+                  title: '742 Madison',
+                  backgroundColor: Color(0x80FF3600),
+                ),
+                LocationCard(
+                  title: '5th Ave & E 42nd St',
+                  backgroundColor: Color(0x80FFCC00),
+                ),
+              ],
+            ).marginOnly(top: 12),
                    
        SizedBox(height: 20,),            
       CustomBottomBorder(),
@@ -160,24 +175,14 @@ ProfileScreen({super.key});
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                MenuItemCard(
-                 onTab: () => PersistentNavBarNavigator.pushNewScreen(
-                  context,
-                  screen: HistoryScreen(),
-                ),
-                  title: 'History',
-                  icon: 'assets/icons/history.png',
-                ),
-
                 InkWell(
                   onTap: () => PersistentNavBarNavigator.pushNewScreen(
                     context,
-                    screen: CardActivationScreen(),
+                    screen: HistoryScreen(),
                   ),
                   child: MenuItemCard(
-            
-                    title: 'Add Card Payment',
-                    icon: 'assets/icons/card payment.png',
+                    title: 'History',
+                    icon: 'assets/icons/history.png',
                   ),
                 ),
                 InkWell(

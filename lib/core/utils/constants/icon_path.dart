@@ -8,16 +8,16 @@ class IconPath {
   static const String profile = 'assets/icons/profile.png';
   static const String chat = 'assets/icons/chat.png';
   static const String greenboxtick = 'assets/icons/Vector.png';
-  static const String card = 'assets/icons/card.png';
+  static const String card = 'assets/icons/card payment.png';
   static const String history = 'assets/icons/history.png';
   static const String logout = 'assets/icons/log_out.png';
   static const String password = 'assets/icons/password.png';
   static const String termsAndCondition =
-      'assets/icons/terms_and_condition.png';
+      'assets/icons/terms condition.png';
   static const String edit = 'assets/icons/edit.png';
   static const String dollar = 'assets/icons/dollar.png';
   static const String cardpay = 'assets/icons/cardpay.png';
-  static const String onlinepay = 'assets/icons/onlinepay.png';
+
   static const String back = 'assets/icons/back.png';
   static const String newOrder = 'assets/icons/new_order.png';
   static const String processingOrder = 'assets/icons/processing_order.png';
@@ -27,4 +27,8 @@ class IconPath {
   static const String user = 'assets/icons/user.png';
   static const String call = 'assets/icons/call.png';
   static const String location = 'assets/icons/location.png';
+  static const String privacy = 'assets/icons/privacy.png';
+  static const String onlinepay = 'assets/icons/online pay.png';
+ 
+
 }

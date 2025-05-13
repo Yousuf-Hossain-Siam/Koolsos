@@ -142,5 +142,6 @@ class AppText {
 
   // activation screen
   static const String activationScreenTitle = 'Activation';
-  static const String activationScreenSubTitle = 'Your account will remain active and ready to accept customer orders until 24-Jun-2025.';
+  static const String activationScreenSubTitle = 'Your account will remain active and ready \n         to accept customer orders until \n                             24-Jun-2025.';
+  static const String activationScreenlast = 'You may renew it at your \n           convenience.';
 }

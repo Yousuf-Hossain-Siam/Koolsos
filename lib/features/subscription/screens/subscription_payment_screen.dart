@@ -2,12 +2,15 @@ import 'package:dummy_project_1/core/common/style/global_text_style.dart';
 import 'package:dummy_project_1/core/utils/constants/app_text.dart';
 import 'package:dummy_project_1/core/utils/constants/colors.dart';
 import 'package:dummy_project_1/core/utils/constants/icon_path.dart';
+import 'package:dummy_project_1/core/widgets/screens/custom_bottom_border.dart';
 import 'package:dummy_project_1/core/widgets/screens/custom_submit_button.dart';
+import 'package:dummy_project_1/features/subscription/controller/payment_option_controller.dart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SubscriptionPaymentScreen extends StatelessWidget {
-  const SubscriptionPaymentScreen({super.key, required this.totalAmount});
+   SubscriptionPaymentScreen({super.key, required this.totalAmount});
+  final PaymentOptionController controller = Get.put(PaymentOptionController());
 
   final int totalAmount;
 
@@ -57,11 +60,17 @@ class SubscriptionPaymentScreen extends StatelessWidget {
                         scale: 17,
                       ),
                     ).marginOnly(right: 170, top: 30),
+
                   ],
                 ),
               ],
             ),
           ),
+         
+         CustomBottomBorder(),
+
+        
+
 
           GestureDetector(
             onTap: () {
