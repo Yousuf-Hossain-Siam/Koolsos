@@ -1,21 +1,18 @@
 import 'package:dummy_project_1/core/common/style/global_text_style.dart';
 import 'package:dummy_project_1/core/utils/constants/app_text.dart';
-import 'package:dummy_project_1/core/utils/constants/colors.dart';
 
 import 'package:dummy_project_1/core/widgets/controller/checkbox_controller.dart';
 import 'package:dummy_project_1/core/widgets/screens/custom_checkbox.dart';
-import 'package:dummy_project_1/core/widgets/screens/custom_submit_button.dart';
 
 import 'package:dummy_project_1/core/widgets/screens/custom_toggle_button_screen.dart';
 import 'package:dummy_project_1/core/widgets/screens/paypass_textfield.dart';
-import 'package:dummy_project_1/features/auth/widgets/pop_up_menu.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PasswordScreen extends StatelessWidget {
+class CardPayInfo extends StatelessWidget {
   final checkboxController = Get.put(CheckboxController());
-  PasswordScreen({super.key});
+  CardPayInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +27,7 @@ class PasswordScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  AppText.profileScreenMenuItemPassword,
+                  AppText.paymentTitle,
                   style: getTextStyle(
                     fontFamily: 'bricolage',
                     fontWeight: FontWeight.w500,
@@ -49,27 +46,44 @@ class PasswordScreen extends StatelessWidget {
             ],
           ).paddingOnly(left: 20, right: 20),
       
-      PayPassTextField(
-               title: AppText.appChangePasswordOld,
-             hintText: '********',
-      
-           ),
-           
+      Row(children: [
+ Expanded(
+   child: PayPassTextField(
+            title: AppText.cardNum,
+          hintText: '0000 0000 0000 0000',
+   
+        ),
+ ),
+      CustomToggleButtonScreen(activeText: 'Visa',
+  inactiveText: 'Subscribe',).paddingOnly(right: 10)
+      ],),
      
 
       SizedBox(height: 30),
-      PayPassTextField(
-              title:  AppText.appChangePasswordNew,
-            hintText: '********',
-                ),
-            
-            
-            
+      Row(
+        children: [
+          Expanded(
+        child: PayPassTextField(
+            title:  AppText.expire,
+          hintText: '20-Jan-2030',
+              ),
+      ),
+      
+      
+      Expanded(
+        child: PayPassTextField(
+            title: AppText.cvv,
+          hintText: '0000 0000 0000 0000',
+              ),
+      )
+     
+        ],
+      ),
 
       SizedBox(height: 30),
        PayPassTextField(
-          title: AppText.appSignUpConfirmPasswordHint,
-        hintText: '********',
+          title: AppText.cardHolder,
+        hintText: 'Mr. Jhon Don',
       ),
        SizedBox(height: 20),
    Row(
@@ -89,34 +103,15 @@ class PasswordScreen extends StatelessWidget {
               ),
            SizedBox(width: 5,),
               Text(
-                  AppText.appLoginCheckBox,
+                  AppText.checkBox,
                   style: getTextStyle(
                     fontFamily: 'bricolage',
                     fontWeight: FontWeight.w400,
                     fontSize: 12,
-                  ),
-                ),
-                 SizedBox(width: 130,),
-                Text(
-                  AppText.appForgotPassword,
-                  style: getTextStyle(
-                    fontFamily: 'bricolage',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 12,
-                    color: AppColors.accent
                   ),
                 )
     ],
-   ).paddingOnly(left: 20),
-  SizedBox(height: 30,),
-   InkWell(
-    onTap: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) => PopUpMenu());
-                    },
-    
-    child: CustomSubmitButton(hintText: "Confirm", color: AppColors.accent,).paddingOnly(left: 20, right: 20))
+   ).paddingOnly(left: 20)
 
         ],
       ),

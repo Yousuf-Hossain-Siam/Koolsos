@@ -5,7 +5,7 @@ import 'package:dummy_project_1/core/widgets/screens/custom_submit_button.dart';
 import 'package:dummy_project_1/core/widgets/screens/custom_text_field.dart';
 import 'package:dummy_project_1/features/auth/controllers/auth_controller.dart';
 import 'package:dummy_project_1/features/auth/screens/forget_password.dart';
-
+import 'package:dummy_project_1/features/auth/screens/signup_screen.dart';
 import 'package:dummy_project_1/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,68 +19,61 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get the screen height from MediaQuery
     double screenHeight = MediaQuery.of(context).size.height;
+    const double smallScreenHeight = 600.0;
+    const double mediumScreenHeight = 800.0;
 
-    // Define your custom screen size conditions
-    const double smallScreenHeight = 600.0; // Example height for small screens
-    const double mediumScreenHeight =
-        800.0; // Example height for medium screens
-
-    // TextEditingControllers for the fields
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
-      body: Column(
-        children: [
-          // Top container with circle decoration
-          Container(
-            color: Colors.white,
-            height:
-                screenHeight < smallScreenHeight
-                    ? 140
-                    : 300, // Conditional height
-            child: Stack(
-              children: [
-                Positioned(
-                  bottom: screenHeight < mediumScreenHeight ? 10 : 50,
-                  right: screenHeight < mediumScreenHeight ? 10 : 50,
-                  child: Container(
-                    height: 784,
-                    width: 784,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFF5FCFF),
-                      shape: BoxShape.circle,
+      resizeToAvoidBottomInset: true,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Top container with decorative circle
+            Container(
+              color: Colors.white,
+              height: screenHeight < smallScreenHeight ? 140 : 300,
+              child: Stack(
+                children: [
+                  Positioned(
+                    bottom: screenHeight < mediumScreenHeight ? 10 : 50,
+                    right: screenHeight < mediumScreenHeight ? 10 : 50,
+                    child: Container(
+                      height: 784,
+                      width: 784,
+                      decoration: BoxDecoration(
+                        color: Color(0xFFF5FCFF),
+                        shape: BoxShape.circle,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-
-          // App name with shadow
-          Text(
-            'Koolsos',
-            style: GoogleFonts.bricolageGrotesque(
-              fontSize: 48,
-              fontWeight: FontWeight.bold,
-              color: Colors.deepOrange,
-              decoration: TextDecoration.none,
-              shadows: [
-                Shadow(
-                  offset: Offset(3, 4), // Shadow offset
-                  blurRadius: 0, // No blur
-                  color: Color(0xFF000000).withOpacity(0.08), // Shadow color
-                ),
-              ],
-            ),
-          ).marginOnly(bottom: 50, top: 50),
-
-          Expanded(
-            child: Container(
-              width: double.maxFinite,
-              padding: const EdgeInsets.only(top: 32),
+      
+            // App name
+            Text(
+              'Koolsos',
+              style: GoogleFonts.bricolageGrotesque(
+                fontSize: 48,
+                fontWeight: FontWeight.bold,
+                color: Colors.deepOrange,
+                decoration: TextDecoration.none,
+                shadows: [
+                  Shadow(
+                    offset: Offset(3, 4),
+                    blurRadius: 0,
+                    color: Color(0xFF000000).withOpacity(0.08),
+                  ),
+                ],
+              ),
+            ).marginOnly(bottom: 30, top: 30),
+      
+            // Bottom container
+            Container(
+              width: double.infinity,
               decoration: BoxDecoration(
                 color: Color(0xFF40B3EA),
                 borderRadius: BorderRadius.only(
@@ -88,111 +81,109 @@ class LoginScreen extends StatelessWidget {
                   topRight: Radius.circular(40),
                 ),
               ),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    // Login header text
-                    Text(
-                      'Let’s Sign In As An Engineer',
-                      style: GoogleFonts.bricolageGrotesque(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        decoration: TextDecoration.none,
-                        shadows: [
-                          Shadow(
-                            offset: Offset(3, 4), // Shadow offset
-                            blurRadius: 0, // No blur
-                            color: Color(
-                              0xFF000000,
-                            ).withOpacity(0.08), // Shadow color
-                          ),
-                        ],
-                      ),
-                    ).marginOnly(bottom: 24),
-
-                    // Email input field
-                    CustomTextField(
-                      hintText: "Enter Email or User Name",
-                      controller: emailController, // Pass email controller
-                    ).marginOnly(left: 16, right: 16, bottom: 12),
-
-                    // Password input field
-                    CustomTextField(
-                      hintText: "Enter Password",
-                      controller:
-                          passwordController, // Pass password controller
-                    ).marginOnly(left: 16, right: 16, bottom: 12),
-
-                    // Submit button (removed CustomSubmitButton for now)
-                    Row(
-                      children: [
-                        CustomCheckbox(
-                          controller: checkboxController,
-                          borderRadius: 5.0,
-                          size: 14, // controls height & width
-                          iconSize: 12, // controls tick/check icon size
-                          backgroundColor: Colors.transparent, // when checked
-                          iconColor: Colors.black, // tick/check color
-                          borderColor: Colors.black, // border color
-                          icon: Icons.check, // default is check icon
-                          onChange: (val) {
-                            print("Checked: $val");
-                          },
+              padding: EdgeInsets.only(top: 32, bottom: 32),
+              child: Column(
+                children: [
+                  // Header
+                  Text(
+                    'Let’s Sign In As An Engineer',
+                    style: GoogleFonts.bricolageGrotesque(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      decoration: TextDecoration.none,
+                      shadows: [
+                        Shadow(
+                          offset: Offset(3, 4),
+                          blurRadius: 0,
+                          color: Color(0xFF000000).withOpacity(0.08),
                         ),
-                        SizedBox(width: 6),
-                        Text(
-                          "Remember me",
+                      ],
+                    ),
+                  ).marginOnly(bottom: 24),
+      
+                  // Email field
+                  CustomTextField(
+                    hintText: "Enter Email or User Name",
+                    controller: emailController,
+                  ).marginOnly(left: 16, right: 16, bottom: 12),
+      
+                  // Password field
+                  CustomTextField(
+                    hintText: "Enter Password",
+                    controller: passwordController,
+                  ).marginOnly(left: 16, right: 16, bottom: 12),
+      
+                  // Remember me and forgot password
+                  Row(
+                    children: [
+                      CustomCheckbox(
+                        controller: checkboxController,
+                        borderRadius: 5.0,
+                        size: 14,
+                        iconSize: 12,
+                        backgroundColor: Colors.transparent,
+                        iconColor: Colors.black,
+                        borderColor: Colors.black,
+                        icon: Icons.check,
+                        onChange: (val) {
+                          print("Checked: $val");
+                        },
+                      ),
+                      SizedBox(width: 6),
+                      Text(
+                        "Remember me",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Spacer(),
+                      InkWell(
+                        onTap: () => Get.to(ForgetPassword()),
+                        child: Text(
+                          "Forget password?",
                           style: GoogleFonts.montserrat(
                             fontSize: 12,
-                            fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.w500,
                             color: Colors.black,
                           ),
                         ),
-                        SizedBox(width: 130),
-                        InkWell(
-                          onTap: () => Get.to(ForgetPassword()),
-                          child: Text(
-                            "Forget password?",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 12,
-                              fontStyle: FontStyle.normal,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ).paddingOnly(left: 30),
-                    SizedBox(height: 20),
-                    InkWell(
-                      onTap: () => Get.to(CustomBottomNavBar()),
-                      child: CustomSubmitButton(
-                        hintText: "Continue",
-                      ).paddingOnly(left: 20, right: 20),
-                    ),
-                    SizedBox(height: 20),
-                    InkWell(
-                     onTap:
-                            () => Get.offAllNamed(
-                              AppRoute.customBottomNavBarScreen,
-                            ),
-                      child: Text(
-                        "Do not have an Account? Create Now",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
-                        ),
+                      ),
+                      SizedBox(width: 16),
+                    ],
+                  ).paddingOnly(left: 30, right: 30),
+      
+                  SizedBox(height: 20),
+      
+                  // Continue button
+                  InkWell(
+                    onTap: () => Get.to(CustomBottomNavBar()),
+                    child: CustomSubmitButton(
+                      hintText: "Continue",
+                    ).paddingOnly(left: 20, right: 20),
+                  ),
+      
+                  SizedBox(height: 20),
+      
+                  // Sign up
+                  InkWell(
+                    onTap: () => Get.to(SignupScreen()),
+                    child: Text(
+                      "Do not have an Account? Create Now",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

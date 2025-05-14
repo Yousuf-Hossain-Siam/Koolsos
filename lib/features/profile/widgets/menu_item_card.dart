@@ -6,30 +6,36 @@ import 'package:get/get.dart';
 
 
 class MenuItemCard extends StatelessWidget {
-  const MenuItemCard({super.key, required this.title, this.marginBottom = 24, required this.icon});
+   MenuItemCard({
+    super.key, required this.title, this.marginBottom = 24, required this.icon,this.onTab});
 
   final String title;
   final String icon;
   final double? marginBottom;
+  VoidCallback? onTab;
+
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Image.asset(icon, height: 15,).marginOnly(right: 8),
-        Expanded(
-          child: Text(
-            title,
-            style: getTextStyle(
-              fontFamily: 'bricolage',
-              fontWeight: FontWeight.w400,
-              fontSize: 16
+    return GestureDetector(
+      onTap: onTab,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image.asset(icon, height: 15,).marginOnly(right: 8),
+          Expanded(
+            child: Text(
+              title,
+              style: getTextStyle(
+                fontFamily: 'bricolage',
+                fontWeight: FontWeight.w400,
+                fontSize: 16
+              ),
             ),
           ),
-        ),
-      ],
-    ).marginOnly(bottom: marginBottom ?? 24);
+        ],
+      ).marginOnly(bottom: marginBottom ?? 24),
+    );
   }
 }
