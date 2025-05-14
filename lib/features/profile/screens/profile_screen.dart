@@ -86,7 +86,8 @@ ProfileScreen({super.key});
                       ),
                     ],
                   ).paddingOnly(bottom: 10),
-                  CustomToggleButtonScreen().paddingOnly(bottom: 20, )
+                  CustomToggleButtonScreen(activeText: 'Active',
+  inactiveText: 'Deactivate',).paddingOnly(bottom: 20, )
                 ],
               ).paddingOnly( top: 20),
             ),

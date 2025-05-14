@@ -5,14 +5,21 @@ import '../controller/toggle_button_controller.dart';
 class CustomToggleButtonScreen extends StatelessWidget {
   final ToggleButtonController controller = Get.find();
 
-  CustomToggleButtonScreen({super.key});
+  final String activeText;
+  final String inactiveText;
+
+  CustomToggleButtonScreen({
+    super.key,
+    required this.activeText,
+    required this.inactiveText,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Obx(() => GestureDetector(
           onTap: controller.toggleState,
           child: Container(
-            margin: const EdgeInsets.only(left: 10), // spacing from text
+            margin: const EdgeInsets.only(left: 10),
             height: controller.buttonHeight.value,
             width: controller.buttonWidth.value,
             decoration: BoxDecoration(
@@ -23,7 +30,7 @@ class CustomToggleButtonScreen extends StatelessWidget {
             ),
             alignment: Alignment.center,
             child: Text(
-              controller.isActive.value ? 'Active' : 'Deactivate',
+              controller.isActive.value ? activeText : inactiveText,
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 14,
